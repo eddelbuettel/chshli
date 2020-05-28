@@ -1,0 +1,15 @@
+Package: chshli
+Type: Package
+Title: Check Shared Libraries
+Version: 0.0.1
+Date: 2020-05-26
+Author: Dirk Eddelbuettel
+Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Description: R packages can be downloaded from a repository for the 'RStudio Package Manager'
+ or 'RSPM' which provides prebuilt binaries for several Linux distributions easing installing
+ considerably. However, these packages do not have system level support for their run-time
+ dependencies.  This packages aims to address this shortcoming with a first application for
+ Ubuntu 18.04 aka 'bionic'.
+URL: http://dirk.eddelbuettel.com/code/chshli.html
+BugReports: https://github.com/eddelbuettel/chshli/issues
+License: GPL (>= 2)
