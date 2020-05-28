@@ -29,8 +29,10 @@
 }
 
 checkSharedLibs <- function(vec, db) {
+    ## mostly for debugging / dev, to be removed eventually
     if (missing(vec))
         vec <- c("libxml2.so.2", "libapt-pkg.so.5.90", "libgit2.so.27", "libqdb_api.so")
+
     if (missing(db))
         db <- .getDB()
     else
