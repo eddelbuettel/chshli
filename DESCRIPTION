@@ -13,3 +13,4 @@ Description: R packages can be downloaded from a repository for the 'RStudio Pac
 URL: http://dirk.eddelbuettel.com/code/chshli.html
 BugReports: https://github.com/eddelbuettel/chshli/issues
 License: GPL (>= 2)
+RoxygenNote: 6.0.1

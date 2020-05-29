@@ -20,7 +20,8 @@
     unique(vec[order(vec)])
 }
 
-.getDB <- function(rel="18.04", arch="amd64") {
+.getDB <- function(rel=c("18.04", "19.10"), arch="amd64") {
+    rel <- match.arg(rel)
     db <- system.file("extdata", paste0("libContents-", arch, ".", rel, ".gz"), package="chshli")
     if (nchar(db) == 0)
         stop("No data for '", rel, "' on '", arch, "'", call.=FALSE)
@@ -28,6 +29,31 @@
     dat
 }
 
+##' Check shared libraries on current system
+##'
+##' This function examine the shared libraries in argument
+##' \code{vec}. It runs \code{ldd} on these, filters for \dQuote{not
+##' found} to identify unresolved shared libraries and tries to map
+##' these against (stored) information on distribution packages (where
+##' Ubuntu 18.04 and 19.10 are currently supported).
+##'
+##' The internal helper function \code{.libs()} can be used to
+##' identify shared libraries from packages in the current
+##' \code{.libPaths()}.  Because search all packages in each 
+##' \code{.libPaths()} entry at once (using shell tools) it does
+##' not currently associate finds with the packages they originate
+##' from.
+##'
+##' @title Check Shared Libraries
+##' @param vec A (optional) character vector of shared libraries,
+##'     typcially with major soname. If missing a default vector is
+##'     used as fallback.
+##' @param db An optional identifier for a library package database,
+##'     should be one of "18.04" or "19.10".
+##' @return Nothing currently but information is printed.
+##' @author Dirk Eddelbuettel
+##' @examples 
+##' checkSharedLibs(c("libxml2.so.2"))
 checkSharedLibs <- function(vec, db) {
     ## mostly for debugging / dev, to be removed eventually
     if (missing(vec))
