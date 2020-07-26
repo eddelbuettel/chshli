@@ -100,14 +100,23 @@ NULL
 > 
 ```
 
-and installing (at the system-level, _i.e._ as `root`) `sudo apt install libxml2` will make your package work.
-Which is a very nice complement to the nice and fast installation via RSPM.
+and installing (at the system-level, _i.e._ as `root`) `sudo apt install libxml2` will make your
+package work.  Which is a very nice complement to the nice and fast installation via RSPM.
+
+(And we should note that we now add "a few" libraries to the aforementioned RSPM containers. So
+`xml2` will already be covered if you try to replicate this.)
 
 
 ### Installation
 
 For now from GitHub via `remotes::install_github("eddelbuettel/chshli")` or, if you have
 [littler](https://github.com/eddelbuettel/littler), via `installGithub eddelbuettel/chshli`.
+
+### Use with other Distributions
+
+Note that you may need to provide the backend end file for your distribution. As these are large we
+do not ship them. See `inst/rawdata/` and `inst/extdata` in the source, and try to follow what I did
+for Ubuntu if your system is different.
 
 ### Author
 
