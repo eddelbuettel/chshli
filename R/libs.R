@@ -24,7 +24,8 @@
     rel <- match.arg(rel)
     db <- system.file("extdata", paste0("libContents-", arch, ".", rel, ".gz"), package="chshli")
     if (nchar(db) == 0)
-        stop("No data for '", rel, "' on '", arch, "'", call.=FALSE)
+        stop("No data for '", rel, "' on '", arch,
+             "'. See the 'rawdata' and 'extdata' directories in the sources.", call.=FALSE)
     dat <- read.table(db, row.names=1, col.names=c("path", "pkg"))
     dat
 }
@@ -55,9 +56,12 @@
 ##' @examples 
 ##' checkSharedLibs(c("libxml2.so.2"))
 checkSharedLibs <- function(vec, db) {
-    ## mostly for debugging / dev, to be removed eventually
-    if (missing(vec))
-        vec <- c("libxml2.so.2", "libapt-pkg.so.5.90", "libgit2.so.27", "libqdb_api.so")
+    if (missing(vec)) {
+        ## mostly for debugging / dev, to be removed eventually
+        ##vec <- c("libxml2.so.2", "libapt-pkg.so.5.90", "libgit2.so.27", "libqdb_api.so")
+        message("Setting default 'vec' argument based on .libPaths() scan.")
+        vec <- .libs()
+    }
 
     if (missing(db))
         db <- .getDB()
@@ -72,6 +76,5 @@ checkSharedLibs <- function(vec, db) {
         else
             cat("<NA>\n")
     }
-    NULL
-
+    invisible()
 }
